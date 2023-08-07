@@ -11,26 +11,22 @@ class CharacterRole(Enum):
     ANTIHERO = 3
 
 @strawberry.type
-class Character:
+class AbbreviatedCharacter:
     id: strawberry.ID
     name: str
     realName: Optional[str] = 'unknown'
+    role: CharacterRole
+
+@strawberry.type
+class Character(AbbreviatedCharacter):
     powers: list[Optional['Power']] = ()
     enemies: list[Optional['AbbreviatedCharacter']] = ()
-    role: CharacterRole
 
 @strawberry.type
 class Power:
     id: strawberry.ID
     name: str
     users: list[Optional['AbbreviatedCharacter']]
-
-@strawberry.type
-class AbbreviatedCharacter:
-    id: strawberry.ID
-    name: str
-    realName: Optional[str] = 'unknown'
-    role: CharacterRole
 
 @strawberry.input
 class CharacterInput:
