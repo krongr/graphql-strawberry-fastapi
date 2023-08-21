@@ -1,14 +1,15 @@
 # FastAPI + Strawberry GraphQL API Application
-This repository hosts a learning-oriented GraphQL API application, devised using FastAPI, Strawberry, and the Repository pattern. Additionally, it includes a pre-populated SQLite database file, enabling immediate use of the application.
+This repository contains a GraphQL API application I developed as part of my journey in mastering GraphQL. Built with FastAPI, Strawberry, and the Repository pattern, it comes equipped with a pre-loaded SQLite database, allowing immediate interaction and exploration.
 
 ## Project Overview
-This initiative primarily serves as an educational platform for understanding and implementing GraphQL, using technologies like FastAPI, Strawberry, and the Repository pattern. The project does not cover all potential use cases, with the main focus on effectively executing CRUD (Create, Retrieve, Update, Delete) operations for characters, their powers, and enemies.
+While I delved into the depths of GraphQL, I crafted this application, which became a testament to the potential of GraphQL combined with technologies like FastAPI and Strawberry. The focus lies in CRUD (Create, Retrieve, Update, Delete) operations, letting users delve into the world of characters, their unique powers, and their adversaries.
 
-The application comes pre-packaged with a pre-filled SQLite database file, enabling users to immediately use and interact with the application, without the need for additional setup or data entry.
+The application's SQLite database is pre-populated, eliminating the need for initial setup or data input, providing a seamless start.
 
-Please note that error handling has been kept to a minimal level. The primary objective of this project is to showcase the basic functionalities of a GraphQL API and the effective use of FastAPI and Strawberry. While it can be used as a practical learning tool or a template for similar applications, it may not be entirely suited for full production use.
+A heads-up: I concentrated on getting the functionalities right and showcasing GraphQL capabilities, so error handling remains minimal. While the project serves as a rich demonstration of GraphQL and its interplay with FastAPI and Strawberry, it's best suited as a template or a point of reference rather than for production use.
 
 ## Prerequisites
-Before you begin, ensure you have met the following requirements:
+Before diving in, ensure the following requirements are met:
 
-You have installed Python 3.7+ and pip
+- Python 3.7+
+- pip
