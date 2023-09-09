@@ -1,0 +1,37 @@
+{
+    "1": {
+        "id": "1",
+        "name": "martial arts",
+        "description": "details unavailable"
+    },
+    "2": {
+        "id": "2",
+        "name": "flight",
+        "description": "details unavailable"
+    },
+    "3": {
+        "id": "3",
+        "name": "super speed",
+        "description": "details unavailable"
+    },
+    "4": {
+        "id": "4",
+        "name": "super strength",
+        "description": "details unavailable"
+    },
+    "5": {
+        "id": "5",
+        "name": "gadgets",
+        "description": "details unavailable"
+    },
+    "6": {
+        "id": "6",
+        "name": "weapons",
+        "description": "details unavailable"
+    },
+    "7": {
+        "id": "7",
+        "name": "invulnerability",
+        "description": "details unavailable"
+    }
+}
