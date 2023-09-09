@@ -1,3 +1,5 @@
 uvicorn
 fastapi
 strawberry-graphql[fastapi]
+mongoengine
+python-decouple
