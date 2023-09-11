@@ -41,6 +41,7 @@ class PowerDAO:
             logger.log_event(
                 f'Duplicate power name entry attempt for "{power.name}"'
             )
+            raise
         except MongoEngineException:
             logger.log_error("DB interaction error")
             raise
