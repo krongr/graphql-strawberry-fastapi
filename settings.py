@@ -20,5 +20,5 @@ PREFILL_FILES = {
 
 # Logging configurations
 EVENT_LOG_FORMAT = '%(asctime)s: [%(levelname)s] %(message)s'
-ERROR_LOG_FORMAT = '%(asctime)s: [%(levelname)s] [%(module)s] %(message)s'
+ERROR_LOG_FORMAT = '%(asctime)s: [%(levelname)s] [%(name)s] %(message)s'
 BACKUP_LOG_COUNT = 5
