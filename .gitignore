@@ -1,4 +1,5 @@
 __pycache__
 .venv
 .env
+logs
 road_map.md
