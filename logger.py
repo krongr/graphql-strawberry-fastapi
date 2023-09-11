@@ -1,5 +1,5 @@
 """
-Logger Module
+logger.py
 
 This module defines a custom logging class `CustomLogger` tailored for
 creating and handling both event and error logs. 
@@ -26,9 +26,10 @@ Typical use case:
     logger.log_event("Sample event message.")
     logger.log_error("Sample error message with traceback.")
 
-Note: Ensure that the appropriate permissions and configurations
-are set for the logging directory and files when
-deploying in production environments.
+Note:
+    Ensure that the appropriate permissions and configurations
+    are set for the logging directory and files when
+    deploying in production environments.
 """
 
 
@@ -109,18 +110,28 @@ class CustomLogger:
         Create and set up an event logger.
 
         :return: Configured logger for events.
+
+        :raises OSError: Raised when there's an issue creating the file.
         """
         logger = logging.getLogger('event')
         logger.setLevel(logging.INFO)
-        logger.addHandler(
-            self._stdout_handler(logging.INFO, EVENT_LOG_FORMAT)
-        )
-        try:
+        if not any(
+            isinstance(h, logging.StreamHandler) for h in logger.handlers
+        ):
             logger.addHandler(
-                self._file_handler('event', logging.INFO, EVENT_LOG_FORMAT)
+                self._stdout_handler(logging.INFO, EVENT_LOG_FORMAT)
             )
-        except OSError:
-            raise
+        if not any(
+            isinstance(h, TimedRotatingFileHandler) for h in logger.handlers
+        ):
+            try:
+                logger.addHandler(
+                    self._file_handler(
+                        'event', logging.INFO, EVENT_LOG_FORMAT
+                    )
+                )
+            except OSError:
+                raise
         return logger
 
     def _create_error_logger(self, name: str) -> logging.Logger:
@@ -130,15 +141,22 @@ class CustomLogger:
         :param name: Name of the logger (e.g., module name).
 
         :return: Configured logger for errors.
+
+        :raises OSError: Raised when there's an issue creating the file.
         """
         logger = logging.getLogger(name)
         logger.setLevel(logging.ERROR)
-        try:
-            logger.addHandler(
-                self._file_handler('error', logging.ERROR, ERROR_LOG_FORMAT)
-            )
-        except OSError:
-            raise
+        if not any(
+            isinstance(h, TimedRotatingFileHandler) for h in logger.handlers
+        ):
+            try:
+                logger.addHandler(
+                    self._file_handler(
+                        'error', logging.ERROR, ERROR_LOG_FORMAT
+                    )
+                )
+            except OSError:
+                raise
         return logger
 
     def log_event(self, msg: str):
