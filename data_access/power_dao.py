@@ -1,3 +1,17 @@
+"""
+power_dao.py
+
+This module provides the PowerDAO class, a data access object
+that abstracts and encapsulates interactions with the
+MongoDB database for the `Power` model.
+
+The PowerDAO handles CRUD operations (Create, Read, Update, Delete) and
+specific search functionalities like fetching powers based on name or 
+description patterns. 
+
+For interactions related to the `Power` model, it's recommended
+to use PowerDAO to ensure consistent behavior and error handling.
+"""
 from typing import Optional
 
 from mongoengine.errors import (
