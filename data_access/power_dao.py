@@ -12,6 +12,8 @@ description patterns.
 For interactions related to the `Power` model, it's recommended
 to use PowerDAO to ensure consistent behavior and error handling.
 """
+
+
 from typing import Optional
 
 from mongoengine.errors import (
