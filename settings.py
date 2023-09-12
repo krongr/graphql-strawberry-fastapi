@@ -26,6 +26,7 @@ GraphQL settings:
                    only IDs are returned instead of full objects.
 """
 
+
 from pathlib import Path
 
 from decouple import config
