@@ -73,7 +73,7 @@ def _create_or_retrieve_power(entry: dict) -> Power:
             description=entry['description'],
         )
     except NotUniqueError:
-        power = PowerDAO.get_by_name_exact(entry['name'])
+        power = PowerDAO.get_one_by_name_exact(entry['name'])
 
     return power
 
@@ -112,7 +112,7 @@ def _create_or_retrieve_character(entry: dict, power_ids: dict) -> Character:
             powers=powers,
         )
     except NotUniqueError:
-        character = CharacterDAO.get_by_alias_and_name(
+        character = CharacterDAO.get_one_by_alias_and_name(
             alias=entry['alias'],
             name=entry['name'],
         )

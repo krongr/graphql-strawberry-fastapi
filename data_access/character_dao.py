@@ -73,7 +73,8 @@ class CharacterDAO:
         except NotUniqueError:
             _name = getattr(character, 'name', 'unknown')
             logger.log_event(
-                f"Duplicate entry attempt for {alias} (real name: {_name})"
+                'Duplicate character entry attempt for '
+                f'{alias} (real name: {_name})'
             )
             raise
         except MongoEngineException:
@@ -81,7 +82,7 @@ class CharacterDAO:
             raise
 
     @staticmethod
-    def get_by_id(id: str) -> Character | None:
+    def get_one_by_id(id: str) -> Character | None:
         """
         Retrieve a character by its ID.
 
@@ -99,7 +100,15 @@ class CharacterDAO:
             raise
 
     @staticmethod
-    def get_by_alias_and_name(alias: str, name: str) -> Character | None:
+    def get_many_by_id(ids: list[str]) -> list[Character]:
+        try:
+            return list(Character.objects(id__in=ids))
+        except MongoEngineException:
+            logger.log_error("DB interaction error")
+            raise
+
+    @staticmethod
+    def get_one_by_alias_and_name(alias: str, name: str) -> Character | None:
         """
         Retrieve a character by its alias and name.
 

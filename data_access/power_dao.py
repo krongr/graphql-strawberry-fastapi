@@ -55,7 +55,7 @@ class PowerDAO:
             return power
         except NotUniqueError:
             logger.log_event(
-                f'Duplicate power name entry attempt for "{power.name}"'
+                f'Duplicate power entry attempt for "{power.name}"'
             )
             raise
         except MongoEngineException:
@@ -64,7 +64,7 @@ class PowerDAO:
 
 
     @staticmethod
-    def get_by_id(id: str) -> Power | None:
+    def get_one_by_id(id: str) -> Power | None:
         """
         Retrieve a power by its ID.
 
@@ -82,7 +82,15 @@ class PowerDAO:
             raise
 
     @staticmethod
-    def get_by_name_exact(name: str) -> Power | None:
+    def get_many_by_id(ids: list[str]) -> list[Power]:
+        try:
+            return list(Power.objects(id__in=ids))
+        except MongoEngineException:
+            logger.log_error("DB interaction error")
+            raise
+
+    @staticmethod
+    def get_one_by_name_exact(name: str) -> Power | None:
         """
         Retrieve a power by its exact name.
 
