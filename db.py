@@ -1,7 +1,7 @@
 import sqlite3
 from typing import Optional, Any
 
-import config
+import settings
 
 
 def get_db_handler():
@@ -25,7 +25,7 @@ class DBHandler:
         their powers, roles, and enemies.
     """
     def __init__(self)->None:
-        self.connector = DBConnector(config.DB_NAME)
+        self.connector = DBConnector(settings.DB_NAME)
 
     def _execute_one(self, query:str, params:tuple[Any]=())->int:
         with self.connector as connection:
