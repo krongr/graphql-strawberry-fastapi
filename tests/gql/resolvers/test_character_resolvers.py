@@ -35,6 +35,7 @@ def mock_get_one(id):
 def mock_get_all():
     return list(mock_characters.values())
 
+
 @pytest.fixture
 def mock_character_handler():
     handler = Mock()
@@ -66,3 +67,10 @@ def test_character_invalid_id(mock_info):
 
     assert error.value.msg == 'Character not found!'
     assert error.value.code == 404
+
+def test_allCharacters(mock_info):
+    result = CharacterQuery().allCharacters(info=mock_info)
+
+    assert type(result) == list
+    assert len(result) == 2
+    assert type(result[0]) == CharacterType
