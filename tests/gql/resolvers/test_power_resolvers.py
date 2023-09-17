@@ -1,6 +1,6 @@
 from gql.types.power_types import PowerType
 from gql.resolvers.power_resolvers import PowerQuery
-from tests.mock_classes import MockHandler, MockInfo, MockSelectedField
+from tests.mock_classes import MockHandler, MockInfo
 
 
 mock_power_types = {
