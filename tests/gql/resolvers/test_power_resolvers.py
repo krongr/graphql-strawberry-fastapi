@@ -42,9 +42,9 @@ def test_power_invalid_id():
 def test_allPowers():
     result = PowerQuery().allPowers(info=mock_info)
 
-    assert type(result) == list
+    assert isinstance(result, list)
     assert len(result) == 2
-    assert type(result[0]) == PowerType
+    assert isinstance(result[0], PowerType)
 
     names = [power.name for power in result]
     assert len(names) == len(set(names))

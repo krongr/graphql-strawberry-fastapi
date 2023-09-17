@@ -52,9 +52,9 @@ def test_character_invalid_id():
 def test_allCharacters():
     result = CharacterQuery().allCharacters(info=mock_info)
 
-    assert type(result) == list
+    assert isinstance(result, list)
     assert len(result) == 2
-    assert type(result[0]) == CharacterType
+    assert isinstance(result[0], CharacterType)
 
     aliases = [character.alias for character in result]
     assert len(aliases) == len(set(aliases))
