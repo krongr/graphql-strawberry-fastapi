@@ -1,14 +1,9 @@
-
-from unittest.mock import Mock
-
-import pytest
-
 from gql.types.character_types import CharacterType
 from gql.resolvers.character_resolvers import CharacterQuery
-from exceptions import ErrorResponse
+from tests.mock_classes import MockHandler, MockInfo, MockSelectedField
 
 
-mock_characters = {
+mock_character_types = {
     '1': CharacterType(
         id='1',
         alias='Batman',
@@ -29,48 +24,37 @@ mock_characters = {
     ),
 }
 
-def mock_get_one(id):
-    return mock_characters.get(id)
 
-def mock_get_all():
-    return list(mock_characters.values())
-
-
-@pytest.fixture
-def mock_character_handler():
-    handler = Mock()
-    handler.get_one.side_effect = mock_get_one
-    handler.get_all.side_effect = mock_get_all
-    return handler
-
-@pytest.fixture
-def mock_info(mock_character_handler):
-    mock_info = Mock()
-    mock_info.context = {'character_handler': mock_character_handler}
-    return mock_info
+mock_character_handler = MockHandler(mock_character_types)
+mock_info = MockInfo(
+    selected_fields=[MockSelectedField('character')],
+    context = {'character_handler': mock_character_handler}
+)
 
 
-def test_character_valid_id(mock_info):
+def test_character_valid_id():
     result = CharacterQuery().character(
         info=mock_info,
         id='1',
     )
+
     assert result.alias == 'Batman'
     assert result.enemies == []
 
-def test_character_invalid_id(mock_info):
-    with pytest.raises(ErrorResponse) as error:
-        result = CharacterQuery().character(
-            info=mock_info,
-            id='8',
-        )
+def test_character_invalid_id():
+    result = CharacterQuery().character(
+        info=mock_info,
+        id='8',
+    )
 
-    assert error.value.msg == 'Character not found!'
-    assert error.value.code == 404
+    assert result == None
 
-def test_allCharacters(mock_info):
+def test_allCharacters():
     result = CharacterQuery().allCharacters(info=mock_info)
 
     assert type(result) == list
     assert len(result) == 2
     assert type(result[0]) == CharacterType
+
+    aliases = [character.alias for character in result]
+    assert len(aliases) == len(set(aliases))
