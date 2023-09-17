@@ -38,7 +38,7 @@ class BaseMockDataInterface(Generic[T]):
     def get_one_by_id(self, id: str, *args) -> T | None:
         return self.data_set.get(id)
     
-    def get_many_by_id(self, ids: list[str], *args) -> list[T]:
+    def get_many_by_ids(self, ids: list[str], *args) -> list[T]:
         return [self.data_set[id] for id in ids if id in self.data_set]
     
     def get_all(self, *args) -> list[T]:
