@@ -1,8 +1,11 @@
+import mongoengine
 from fastapi import FastAPI
-from strawberry.fastapi import GraphQLRouter
 
-from gql.shema import schema
+from gql.schema import gql_router
+from settings import MONGODB_CONNECTION
 
+
+mongoengine.connect(**MONGODB_CONNECTION)
 
 app = FastAPI()
 
@@ -10,8 +13,7 @@ app = FastAPI()
 def health_check():
     return {'status': 'ok'}
 
-graphql_app = GraphQLRouter(schema)
-app.include_router(graphql_app, prefix="/graphql")
+app.include_router(gql_router, prefix="/graphql")
 
 
 if __name__ == "__main__":
