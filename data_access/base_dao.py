@@ -2,7 +2,7 @@ from typing import Generic, TypeVar
 
 from mongoengine.errors import MongoEngineException
 
-from models import Character, Power
+from data_access.models import Character, Power
 from logger import CustomLogger
 
 
