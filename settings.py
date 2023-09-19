@@ -21,7 +21,7 @@ Logging:
 - BACKUP_LOG_COUNT: The number of backup log files to retain.
 
 GraphQL settings:
-- RECURSION_DEPTH: Determines the depth of nested queries before
+- MAX_QUERY_DEPTH: Determines the depth of nested queries before
                    returning simpler data. Beyond this depth,
                    only IDs are returned instead of full objects.
 """
@@ -53,4 +53,4 @@ ERROR_LOG_FORMAT = '%(asctime)s: [%(levelname)s] [%(name)s] %(message)s'
 BACKUP_LOG_COUNT = 5
 
 # GraphQL settings
-RECURSION_DEPTH = 4 
+MAX_QUERY_DEPTH = 4 
