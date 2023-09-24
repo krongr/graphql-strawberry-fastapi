@@ -1,4 +1,10 @@
+"""
+common_types.py
 
+This module defines all general GraphQL types.
+These types can be used as is or used as the basis for
+more specialized types.
+"""
 
 
 class GQLType:

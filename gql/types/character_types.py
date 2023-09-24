@@ -1,3 +1,11 @@
+"""
+character_types.py
+
+This module defines all GraphQL types associated
+with the character object.
+"""
+
+
 from enum import Enum
 
 import strawberry
@@ -10,11 +18,16 @@ from settings import MAX_QUERY_DEPTH
 @strawberry.enum(description='Represents the alignment of a character.')
 class RoleEnum(Enum):
     HERO = 'hero'
-    VILLIAN = 'villain'
+    VILLAIN = 'villain'
     ANTIHERO = 'antihero'
+
 
 @strawberry.type
 class CharacterType(GQLType):
+    """
+    The main type that describes the character and
+    includes all its attributes.
+    """
     id: strawberry.ID
     alias: str = strawberry.field(
         description='Character alias (e.g. Batman, Joker).'
