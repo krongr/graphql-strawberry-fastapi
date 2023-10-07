@@ -18,7 +18,7 @@ from logger import CustomLogger
 from utils import utils
 
 
-logger = CustomLogger('service.character_handler')
+logger = CustomLogger('service.character_resolvers')
 
 
 @strawberry.type
