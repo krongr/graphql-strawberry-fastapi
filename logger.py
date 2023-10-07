@@ -19,13 +19,6 @@ Other functionalities include:
 - Offer streamlined logging methods for easier integration into
   applications.
 
-Typical use case:
-    from logger import CustomLogger
-
-    logger = CustomLogger("appName")
-    logger.log_event("Sample event message.")
-    logger.log_error("Sample error message with traceback.")
-
 Note:
     Ensure that the appropriate permissions and configurations
     are set for the logging directory and files when
@@ -50,10 +43,10 @@ class CustomLogger:
         event_logger (Logger): Logger instance for events.
         error_logger (Logger): Logger instance for errors.
 
-    Example usage:
-        logger = CustomLogger("appName")
-        logger.log_event("This is an event message.")
-        logger.log_error("This is an error message.")
+    Usage example:
+        logger = CustomLogger('module_name')
+        logger.log_event('This is an event message.')
+        logger.log_error('This is an error message.')
     """
 
     def __init__(self, name: str):
@@ -111,7 +104,7 @@ class CustomLogger:
 
         :return: Configured logger for events.
 
-        :raises OSError: Raised when there's an issue creating the file.
+        :raise OSError: Raised when there's an issue creating the file.
         """
         logger = logging.getLogger('event')
         logger.setLevel(logging.INFO)
@@ -142,7 +135,7 @@ class CustomLogger:
 
         :return: Configured logger for errors.
 
-        :raises OSError: Raised when there's an issue creating the file.
+        :raise OSError: Raised when there's an issue creating the file.
         """
         logger = logging.getLogger(name)
         logger.setLevel(logging.ERROR)
